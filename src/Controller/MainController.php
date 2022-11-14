@@ -6,7 +6,9 @@ use App\Repository\ArticleRepository;
 use App\Repository\CommentaireRepository;
 use App\Repository\ImagesRepository;
 use App\Repository\ReservationRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -44,6 +46,17 @@ class MainController extends AbstractController
     {
         return $this->render('main/hypnose.html.twig', [
             'controller_name' => 'MainController',
+        ]);
+    }
+
+    #[Route("/article/{id}", name:"article_show")]
+    public function show($id, ArticleRepository $repo, Request $globals, EntityManager $manager)
+    {
+        $article = $repo->find($id);
+
+        return $this->render("main/article.html.twig", [
+            "id" => $article->getId(),
+            "article" => $article,
         ]);
     }
 }
