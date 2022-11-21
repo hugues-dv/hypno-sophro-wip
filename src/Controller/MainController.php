@@ -22,7 +22,7 @@ class MainController extends AbstractController
         $commentaires = $commentRepo->findAll();
         $sliders = $imagesRepo->findAll();
         // $slider = $imagesRepo->findBy(["id" => 1]);
-        // dd($slider->getImage);
+        // dd($sliders);
 
         
         return $this->render('main/index.html.twig', [
@@ -49,8 +49,8 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route("/article/{id}", name:"article_show")]
-    public function show($id, ArticleRepository $repo, Request $globals, EntityManager $manager)
+    #[Route("/article/{id}", name:"show_article")]
+    public function show($id, ArticleRepository $repo)
     {
         $article = $repo->find($id);
 

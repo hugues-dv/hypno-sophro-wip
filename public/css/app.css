@@ -1,0 +1,11 @@
+.bg-custom{
+  background-color: rgb(170, 63, 53);
+  /* background-color: rgb(158, 110, 73); */
+  min-height: 75px;
+}
+.btn-custom{
+  background-color: rgb(170, 63, 53);
+  /* background-color: rgb(158, 110, 73); */
+  border-radius: 5%;
+  color: white;
+}
