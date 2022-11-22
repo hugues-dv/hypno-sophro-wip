@@ -23,7 +23,7 @@ class MainController extends AbstractController
         $sliders = $imagesRepo->findAll();
         // $slider = $imagesRepo->findBy(["id" => 1]);
         // dd($sliders);
-
+        
         
         return $this->render('main/index.html.twig', [
             'articles' =>$articles,
@@ -34,18 +34,24 @@ class MainController extends AbstractController
     }
     
     #[Route('/sophrologie', name: 'app_sophrologie')]
-    public function sophrologie(): Response
+    public function sophrologie(ArticleRepository  $articleRepo, ImagesRepository $imagesRepo): Response
     {
+        $articles = $articleRepo->findAll();
+        $sliders = $imagesRepo->findAll();
         return $this->render('main/sophrologie.html.twig', [
-            'controller_name' => 'MainController',
+            'articles' =>$articles,
+            'sliders' =>$sliders,
         ]);
     }
     
     #[Route('/hypnose', name: 'app_hypnose')]
-    public function hypnose(): Response
+    public function hypnose(ArticleRepository  $articleRepo, ImagesRepository $imagesRepo): Response
     {
+        $articles = $articleRepo->findAll();
+        $sliders = $imagesRepo->findAll();
         return $this->render('main/hypnose.html.twig', [
-            'controller_name' => 'MainController',
+            'articles' =>$articles,
+            'sliders' =>$sliders,
         ]);
     }
 
@@ -58,5 +64,23 @@ class MainController extends AbstractController
             "id" => $article->getId(),
             "article" => $article,
         ]);
+    }
+
+    #[Route("/mentions-légales", name:"mentionsLegales")]
+    public function mentions(): Response
+    {
+        return $this->render ('main/mentionsLegales.html.twig');
+    }
+
+    #[Route("/politique-de-confidentialité", name:"politiqueDeConfidentialite")]
+    public function politiqueDeConfidentialite(): Response
+    {
+        return $this->render ('main/politiqueDeConfidentialite.html.twig');
+    }
+
+    #[Route("/qui-suis-Je", name:"app_quiSuisJe")]
+    public function quiSuisJe(): Response
+    {
+        return $this->render ('main/quiSuisJe.html.twig');
     }
 }

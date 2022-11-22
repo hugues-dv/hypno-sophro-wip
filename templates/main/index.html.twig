@@ -6,12 +6,15 @@
 {% block body %}
 	<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
 		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		{% for slider in sliders|sort((a, b) => a.ordre <=> b.ordre) %}
+			{% if slider.sliders != 0%}
+			{% set slideTo = slider.ordre - 1 %}	
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{slideTo}}" {% if slider.ordre == 1 %} class="active" {% endif %} aria-current="true" aria-label="Slide {{slider.ordre}}"></button>
+			{% endif %}			
+		{% endfor %}
 		</div>
 		<div class="carousel-inner" data-bs-interval='3500'>
-			{% for slider in sliders %}
+			{% for slider in sliders|sort((a, b) => a.ordre <=> b.ordre) %}
 				{% if slider.sliders != 0 %}
 					<div class="carousel-item {% if slider.ordre == 1 %} active {% endif %}">
 						<img src="../uploads/images/{{slider.image}}" class="d-block w-100" alt="photo Stephanie de Vregille" style="height:75vh; object-fit:cover;">
@@ -74,8 +77,8 @@
 			{% endif %}
 		{% endfor %}
 		<h2>Contactez-moi si vous êtes intéressé !</h2>
-	</div>
-	<div class="container-fluid bg-custom mb-0">
+	{# </div>
+	<div class="container-fluid bg-custom my-0"> #}
 		<div class=" lg-col-8 pt-4 mb-8 ">
 			<h1 class="font-serif mb-3">Stephanie de Vregille</h1>
 			<p class="text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat at aut magnam quis reiciendis? Nobis facere, nisi dignissimos sed illo veniam quo odio repellendus corrupti odit labore at ipsum blanditiis harum id eaque doloribus iure non. Ducimus aliquid quaerat esse nostrum soluta, excepturi minus aut illo harum, rerum repudiandae qui.</p>

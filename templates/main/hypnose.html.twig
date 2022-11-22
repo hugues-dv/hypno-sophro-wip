@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stéphanie de Vregille | Categorie
+{% endblock %}
+
+{% block body %}
+	<div class="container my-3">
+    <h1 class="m-5">L'hypnose Ericksonienne</h1>
+    <h6 class="text-italic m-2">Qu'est-ce que c'est?</h6>
+    <p class="justify">
+    L'hypnose éricksonienne fait partie des thérapies brèves. C'est Milton Erickson, psychiatre et psychothérapeute américain, qui a modélisé cette méthode dans les années 1950. Il  s'agit de techniques de communication douces dites "permissives" qui permettent au praticien de s'adresser directement à l'inconscient de la personne, elle-même en état de profonde relaxation.
+    <br>
+    <strong>L'hypnose éricksonienne permet de contourner nos barrières mentales pour aller chercher les ressources dont nous avons besoin dans notre inconscient.</strong> C'est pour cette raison que la méthode peut parfois sembler "magique": les effets sont rapides et semblent être atteints sans efforts, tout simplement parce que le changement se fait à un niveau profond... 
+    <br>
+    L'hypnose existe depuis des siècles, et sous différentes formes: en France, cette technique retrouve aujourd'hui ses lettres de noblesse grâce à son efficacité. De nombreuses personnes arrêtent de fumer, retrouvent un sommeil de qualité, apaisent leurs relations conjugales ou parentales, sortent de phobies ou apaisent des traumas, et ceci en une à cinq séances. 
+    </p>
+    <p class="justify">
+    L'hypnose éricksonienne est une thérapie brève qui convient pour de nombreux objectifs, à tous et à tous âges, avec très peu de contre-indications. Contrairement à l'hypnose de spectacle où l'hypnotisé ne maîtrise pas ce qui lui arrive et pour laquelle seulement 15 à 30% des personnes sont réceptives, l'hypnose éricksonienne vous laisse le contrôle de la situation: je vous tends les clés pour que vous puissiez avancer.
+    </p>
+    <div class="row">
+    {% for article in articles %}
+        {% if article.categorie == 'Hypnose' %}
+        {% if article.visible == 1 %}
+        <div class="col-lg-6 col-sm-12">
+            <h2 class="my-2 text-center">{{article.titre}}</h2>
+            <img src="../uploads/images/{{article.images.0}}" alt="photo article {{article.categorie}}" class="img-fluid">
+            <p class="justify">{{article.descriptionLongue|raw}}</p>
+        </div>
+        {% endif %}
+        {% endif %}
+        
+    {% endfor %}
+    </div>
+
+    </div>
+{% endblock %}
